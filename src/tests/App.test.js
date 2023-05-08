@@ -1,20 +1,15 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
 
 describe('Teste o componente <App.js />', () => {
   test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação:', () => {
-    render(
-      <Router>
-        <App />
-      </Router>,
-    );
-    const textHome = screen.getByText(/Home/i);
-    const textAbout = screen.getByText(/About/i);
-    const textFvPokemon = screen.getByText(/Favorite Pok[eéê]mon/iu);
+    renderWithRouter(<App />);
+    const textHome = screen.getByRole('link', { name: /home/i });
+    const textAbout = screen.getByRole('link', { name: /about/i });
+    const textFvPokemon = screen.getByRole('link', { name: /favorite pokémon/i });
     expect(textHome).toBeInTheDocument();
     expect(textAbout).toBeInTheDocument();
     expect(textFvPokemon).toBeInTheDocument();
