@@ -3,6 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
+import { act } from 'react-dom/test-utils';
 
 describe('Teste o componente <App.js />', () => {
   test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação:', () => {
@@ -40,10 +41,10 @@ describe('Teste o componente <App.js />', () => {
   });
   test('Teste se a aplicação é redirecionada para a página Not Found ao entrar em uma URL desconhecida', async () => {
     const { history } = renderWithRouter(<App />);
-    history.push('/xxxxxx');
-    await waitFor(() => {
-      const linkNotfound = screen.getByRole('heading', { name: /page requested not found/i });
-      expect(linkNotfound).toBeInTheDocument();
+    act(() => {
+      history.push('/xxxxxx');
     });
+    const linkNotfound = screen.getByRole('heading', { name: /page requested not found/i });
+    expect(linkNotfound).toBeInTheDocument();
   });
 });
