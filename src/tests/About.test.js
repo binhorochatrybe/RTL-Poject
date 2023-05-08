@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from '../App';
-import renderWithRouter from '../services/routerFunction';
+import renderWithRouter from '../renderWithRouter';
 
 describe('Teste o componente <App.js />', () => {
   test('Teste se o topo da aplicação contém um conjunto fixo de links de navegação:', () => {
