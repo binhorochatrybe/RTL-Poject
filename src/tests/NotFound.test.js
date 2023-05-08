@@ -11,6 +11,7 @@ describe('Teste o componente <NotFound.js />', () => {
   test('Teste se a página mostra a imagem https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif.', () => {
     render(<NotFound />);
     const image = screen.getByRole('img', { src: 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif' });
+    expect(image).toHaveAttribute('src', 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif');
     expect(image).toBeInTheDocument();
   });
 });
