@@ -11,13 +11,13 @@ describe('Teste o componente <About.js />.', () => {
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex;', () => {
     render(<About />);
     const info1 = screen.getByText(/this application simulates a pokédex, a digital encyclopedia containing all pokémon/i);
-    const info2 = screen.getByText(/one can filter pokémon by type, and see more details for each one of them/i);
     expect(info1).toBeInTheDocument();
+    const info2 = screen.getByText(/one can filter pokémon by type, and see more details for each one of them/i);
     expect(info2).toBeInTheDocument();
   });
   test('Teste se a página contém dois parágrafos com texto sobre a Pokédex;', () => {
     render(<About />);
-    const image = screen.getByRole('img', { src: 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png' });
+    const image = screen.getByRole('img', { name: /pokédex/i });
     expect(image).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png');
     expect(image).toBeInTheDocument();
   });
