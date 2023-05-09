@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
+import { act } from 'react-dom/test-utils';
 
 describe('Teste o componente <Pokedex.js />', () => {
   test('Teste se a página contém um heading h2 com o texto Encountered Pokémon', () => {
@@ -98,13 +99,18 @@ describe('Teste o componente <Pokedex.js />', () => {
   });
   test('A Pokedéx deverá mostrar os Pokémon normalmente (sem filtros) quando o botão All for clicado', () => {
     renderWithRouter(<App />);
+    const buttonNext = screen.getByRole('button', { name: /próximo pokémon/i });
+    const texttype = screen.getByTestId('pokemon-type');
+    expect(texttype.innerHTML).toBe('Electric');
+    userEvent.click(buttonNext);
+    expect(texttype.innerHTML).toBe('Fire');
+    const buttonType = screen.getByRole('button', { name: /psychic/i });
+    userEvent.click(buttonType);
+    expect(texttype.innerHTML).toBe('Psychic');
+    userEvent.click(buttonNext);
+    expect(texttype.innerHTML).toBe('Psychic');
     const btnAll = screen.getByRole('button', { name: /all/i });
     userEvent.click(btnAll);
-    const button = screen.getByRole('button', { name: /próximo pokémon/i });
-    userEvent.click(button);
-    const image2 = screen.getByRole('img', { name: /charmander sprite/i });
-    expect(image2).toBeInTheDocument();
-    const pokemon2Name = screen.getByText(/charmander/i);
-    expect(pokemon2Name).toBeInTheDocument();
+    expect(texttype.innerHTML).toBe('Electric');
   });
 });
