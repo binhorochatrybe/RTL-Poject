@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import { screen } from '@testing-library/react';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
-import { act } from 'react-dom/test-utils';
 
 describe('Teste o componente <Pokedex.js />', () => {
   test('Teste se a página contém um heading h2 com o texto Encountered Pokémon', () => {
