@@ -35,6 +35,8 @@ describe('Teste o componente <Pokemon.js />', () => {
     const home = screen.getByRole('link', { name: /home/i });
     userEvent.click(home);
     const favMarked = screen.getByRole('img', { name: /pikachu is marked as favorite/i });
+    expect(favMarked).toHaveAttribute('src', '/star-icon.svg');
+    expect(favMarked).toHaveAttribute('alt', 'Pikachu is marked as favorite');
     expect(favMarked).toBeDefined();
     expect(favMarked).toBeInTheDocument();
   });
